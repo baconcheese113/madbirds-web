@@ -1,0 +1,63 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Scene {
+  id              Int              @id @default(autoincrement())
+  levelNumber     Int              @default(autoincrement())
+  crates          Crate[]
+  explosiveCrates ExplosiveCrate[]
+  enemies         Enemy[]
+  platforms       Platform[]
+}
+
+model Crate {
+  id       Int    @id @default(autoincrement())
+  x        Float  @default(0.0)
+  y        Float  @default(0.0)
+  rotation Float  @default(0.0)
+  Scene    Scene? @relation(fields: [sceneId], references: [id])
+  sceneId  Int?
+}
+
+model ExplosiveCrate {
+  id                   Int     @id @default(autoincrement())
+  x                    Float   @default(0.0)
+  y                    Float   @default(0.0)
+  rotation             Float   @default(0.0)
+  explosionRadius      Float   @default(2.0)
+  explosionForce       Float   @default(500.0)
+  hitSensitivity       Float   @default(5.0)
+  chainReactionRadius  Float   @default(1.0)
+  onlyPlayerCanTrigger Boolean @default(true)
+  Scene                Scene?  @relation(fields: [sceneId], references: [id])
+  sceneId              Int?
+}
+
+model Enemy {
+  id       Int    @id @default(autoincrement())
+  x        Float  @default(0.0)
+  y        Float  @default(0.0)
+  rotation Float  @default(0.0)
+  Scene    Scene? @relation(fields: [sceneId], references: [id])
+  sceneId  Int?
+}
+
+model Platform {
+  id               Int     @id @default(autoincrement())
+  x                Float   @default(0.0)
+  y                Float   @default(0.0)
+  rotation         Float   @default(0.0)
+  useRotator       Boolean @default(false)
+  degsPerSec       Float   @default(45.0)
+  useBouncer       Boolean @default(false)
+  bounceMultiplier Float   @default(10.0)
+  onlyBounceFront  Boolean @default(true)
+  Scene            Scene?  @relation(fields: [sceneId], references: [id])
+  sceneId          Int?
+}
