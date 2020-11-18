@@ -8,7 +8,7 @@ const schema = makeSchema({
     queryType({
       definition(t) {
         t.crud.scene({})
-        t.crud.scenes({})
+        t.crud.scenes({ pagination: true })
       }
     }),
     objectType({
