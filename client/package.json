@@ -20,8 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "try-rm": "FOR /d /r . %%d IN (backdrops) DO @IF EXIST \"%%d\" rd /s /q \"%%d\"",
-    "codegen": "apollo client:codegen --target=typescript --variant=current --passthroughCustomScalars --customScalarsPrefix GraphQL --globalTypesFile=src/types/__generated__/graphql-global-types.ts __generated__"
+    "win-rm-gen": "FOR /d /r . %d IN (__generated__) DO @IF EXIST \"%d\" rd /s /q \"%d\"",
+    "codegen": "npm run win-rm-gen && apollo client:codegen --target=typescript --variant=current --passthroughCustomScalars --customScalarsPrefix GraphQL --globalTypesFile=src/types/__generated__/graphql-global-types.ts __generated__"
   },
   "eslintConfig": {
     "extends": [
