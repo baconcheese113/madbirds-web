@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { ApolloClient, ApolloProvider, NormalizedCacheObject } from '@apollo/client';
 import { cache } from './cache'
 import App from './App';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { darkTheme } from './theme'
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
@@ -12,7 +14,10 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
   </ApolloProvider>,
   document.getElementById('root')
