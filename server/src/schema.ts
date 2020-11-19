@@ -1,5 +1,5 @@
 import { nexusPrisma } from 'nexus-plugin-prisma'
-import { makeSchema, objectType, queryType } from '@nexus/schema'
+import { makeSchema, mutationType, objectType, queryType } from '@nexus/schema'
 import { join } from 'path'
 
 
@@ -7,8 +7,14 @@ const schema = makeSchema({
   types: [
     queryType({
       definition(t) {
-        t.crud.scene({})
+        t.crud.scene()
         t.crud.scenes({ pagination: true })
+        t.crud.crate()
+      }
+    }),
+    mutationType({
+      definition(t) {
+        t.crud.updateOneCrate()
       }
     }),
     objectType({

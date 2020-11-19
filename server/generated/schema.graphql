@@ -2,12 +2,28 @@
 ### Do not make changes to this file directly
 
 
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
 type Crate {
   id: Int!
   rotation: Float!
   Scene: Scene
   x: Float!
   y: Float!
+}
+
+input CrateUpdateInput {
+  rotation: FloatFieldUpdateOperationsInput
+  Scene: SceneUpdateOneWithoutCratesInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
 }
 
 input CrateWhereUniqueInput {
@@ -19,6 +35,75 @@ type Enemy {
   Scene: Scene
   x: Float!
   y: Float!
+}
+
+input EnemyCreateManyWithoutSceneInput {
+  connect: [EnemyWhereUniqueInput!]
+  connectOrCreate: [EnemyCreateOrConnectWithoutSceneInput!]
+  create: [EnemyCreateWithoutSceneInput!]
+}
+
+input EnemyCreateOrConnectWithoutSceneInput {
+  create: EnemyCreateWithoutSceneInput!
+  where: EnemyWhereUniqueInput!
+}
+
+input EnemyCreateWithoutSceneInput {
+  rotation: Float
+  x: Float
+  y: Float
+}
+
+input EnemyScalarWhereInput {
+  AND: [EnemyScalarWhereInput!]
+  id: IntFilter
+  NOT: [EnemyScalarWhereInput!]
+  OR: [EnemyScalarWhereInput!]
+  rotation: FloatFilter
+  sceneId: IntNullableFilter
+  x: FloatFilter
+  y: FloatFilter
+}
+
+input EnemyUpdateManyMutationInput {
+  rotation: FloatFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input EnemyUpdateManyWithoutSceneInput {
+  connect: [EnemyWhereUniqueInput!]
+  connectOrCreate: [EnemyCreateOrConnectWithoutSceneInput!]
+  create: [EnemyCreateWithoutSceneInput!]
+  delete: [EnemyWhereUniqueInput!]
+  deleteMany: [EnemyScalarWhereInput!]
+  disconnect: [EnemyWhereUniqueInput!]
+  set: [EnemyWhereUniqueInput!]
+  update: [EnemyUpdateWithWhereUniqueWithoutSceneInput!]
+  updateMany: [EnemyUpdateManyWithWhereWithoutSceneInput!]
+  upsert: [EnemyUpsertWithWhereUniqueWithoutSceneInput!]
+}
+
+input EnemyUpdateManyWithWhereWithoutSceneInput {
+  data: EnemyUpdateManyMutationInput!
+  where: EnemyScalarWhereInput!
+}
+
+input EnemyUpdateWithoutSceneInput {
+  rotation: FloatFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input EnemyUpdateWithWhereUniqueWithoutSceneInput {
+  data: EnemyUpdateWithoutSceneInput!
+  where: EnemyWhereUniqueInput!
+}
+
+input EnemyUpsertWithWhereUniqueWithoutSceneInput {
+  create: EnemyCreateWithoutSceneInput!
+  update: EnemyUpdateWithoutSceneInput!
+  where: EnemyWhereUniqueInput!
 }
 
 input EnemyWhereUniqueInput {
@@ -38,8 +123,188 @@ type ExplosiveCrate {
   y: Float!
 }
 
+input ExplosiveCrateCreateManyWithoutSceneInput {
+  connect: [ExplosiveCrateWhereUniqueInput!]
+  connectOrCreate: [ExplosiveCrateCreateOrConnectWithoutSceneInput!]
+  create: [ExplosiveCrateCreateWithoutSceneInput!]
+}
+
+input ExplosiveCrateCreateOrConnectWithoutSceneInput {
+  create: ExplosiveCrateCreateWithoutSceneInput!
+  where: ExplosiveCrateWhereUniqueInput!
+}
+
+input ExplosiveCrateCreateWithoutSceneInput {
+  chainReactionRadius: Float
+  explosionForce: Float
+  explosionRadius: Float
+  hitSensitivity: Float
+  onlyPlayerCanTrigger: Boolean
+  rotation: Float
+  x: Float
+  y: Float
+}
+
+input ExplosiveCrateScalarWhereInput {
+  AND: [ExplosiveCrateScalarWhereInput!]
+  chainReactionRadius: FloatFilter
+  explosionForce: FloatFilter
+  explosionRadius: FloatFilter
+  hitSensitivity: FloatFilter
+  id: IntFilter
+  NOT: [ExplosiveCrateScalarWhereInput!]
+  onlyPlayerCanTrigger: BoolFilter
+  OR: [ExplosiveCrateScalarWhereInput!]
+  rotation: FloatFilter
+  sceneId: IntNullableFilter
+  x: FloatFilter
+  y: FloatFilter
+}
+
+input ExplosiveCrateUpdateManyMutationInput {
+  chainReactionRadius: FloatFieldUpdateOperationsInput
+  explosionForce: FloatFieldUpdateOperationsInput
+  explosionRadius: FloatFieldUpdateOperationsInput
+  hitSensitivity: FloatFieldUpdateOperationsInput
+  onlyPlayerCanTrigger: BoolFieldUpdateOperationsInput
+  rotation: FloatFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input ExplosiveCrateUpdateManyWithoutSceneInput {
+  connect: [ExplosiveCrateWhereUniqueInput!]
+  connectOrCreate: [ExplosiveCrateCreateOrConnectWithoutSceneInput!]
+  create: [ExplosiveCrateCreateWithoutSceneInput!]
+  delete: [ExplosiveCrateWhereUniqueInput!]
+  deleteMany: [ExplosiveCrateScalarWhereInput!]
+  disconnect: [ExplosiveCrateWhereUniqueInput!]
+  set: [ExplosiveCrateWhereUniqueInput!]
+  update: [ExplosiveCrateUpdateWithWhereUniqueWithoutSceneInput!]
+  updateMany: [ExplosiveCrateUpdateManyWithWhereWithoutSceneInput!]
+  upsert: [ExplosiveCrateUpsertWithWhereUniqueWithoutSceneInput!]
+}
+
+input ExplosiveCrateUpdateManyWithWhereWithoutSceneInput {
+  data: ExplosiveCrateUpdateManyMutationInput!
+  where: ExplosiveCrateScalarWhereInput!
+}
+
+input ExplosiveCrateUpdateWithoutSceneInput {
+  chainReactionRadius: FloatFieldUpdateOperationsInput
+  explosionForce: FloatFieldUpdateOperationsInput
+  explosionRadius: FloatFieldUpdateOperationsInput
+  hitSensitivity: FloatFieldUpdateOperationsInput
+  onlyPlayerCanTrigger: BoolFieldUpdateOperationsInput
+  rotation: FloatFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input ExplosiveCrateUpdateWithWhereUniqueWithoutSceneInput {
+  data: ExplosiveCrateUpdateWithoutSceneInput!
+  where: ExplosiveCrateWhereUniqueInput!
+}
+
+input ExplosiveCrateUpsertWithWhereUniqueWithoutSceneInput {
+  create: ExplosiveCrateCreateWithoutSceneInput!
+  update: ExplosiveCrateUpdateWithoutSceneInput!
+  where: ExplosiveCrateWhereUniqueInput!
+}
+
 input ExplosiveCrateWhereUniqueInput {
   id: Int
+}
+
+input FloatFieldUpdateOperationsInput {
+  decrement: Float
+  divide: Float
+  increment: Float
+  multiply: Float
+  set: Float
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
+}
+
+input IntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+type Mutation {
+  updateOneCrate(data: CrateUpdateInput!, where: CrateWhereUniqueInput!): Crate
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
 }
 
 type Platform {
@@ -54,11 +319,101 @@ type Platform {
   y: Float!
 }
 
+input PlatformCreateManyWithoutSceneInput {
+  connect: [PlatformWhereUniqueInput!]
+  connectOrCreate: [PlatformCreateOrConnectWithoutSceneInput!]
+  create: [PlatformCreateWithoutSceneInput!]
+}
+
+input PlatformCreateOrConnectWithoutSceneInput {
+  create: PlatformCreateWithoutSceneInput!
+  where: PlatformWhereUniqueInput!
+}
+
+input PlatformCreateWithoutSceneInput {
+  bounceMultiplier: Float
+  degsPerSec: Float
+  onlyBounceFront: Boolean
+  rotation: Float
+  useBouncer: Boolean
+  useRotator: Boolean
+  x: Float
+  y: Float
+}
+
+input PlatformScalarWhereInput {
+  AND: [PlatformScalarWhereInput!]
+  bounceMultiplier: FloatFilter
+  degsPerSec: FloatFilter
+  id: IntFilter
+  NOT: [PlatformScalarWhereInput!]
+  onlyBounceFront: BoolFilter
+  OR: [PlatformScalarWhereInput!]
+  rotation: FloatFilter
+  sceneId: IntNullableFilter
+  useBouncer: BoolFilter
+  useRotator: BoolFilter
+  x: FloatFilter
+  y: FloatFilter
+}
+
+input PlatformUpdateManyMutationInput {
+  bounceMultiplier: FloatFieldUpdateOperationsInput
+  degsPerSec: FloatFieldUpdateOperationsInput
+  onlyBounceFront: BoolFieldUpdateOperationsInput
+  rotation: FloatFieldUpdateOperationsInput
+  useBouncer: BoolFieldUpdateOperationsInput
+  useRotator: BoolFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input PlatformUpdateManyWithoutSceneInput {
+  connect: [PlatformWhereUniqueInput!]
+  connectOrCreate: [PlatformCreateOrConnectWithoutSceneInput!]
+  create: [PlatformCreateWithoutSceneInput!]
+  delete: [PlatformWhereUniqueInput!]
+  deleteMany: [PlatformScalarWhereInput!]
+  disconnect: [PlatformWhereUniqueInput!]
+  set: [PlatformWhereUniqueInput!]
+  update: [PlatformUpdateWithWhereUniqueWithoutSceneInput!]
+  updateMany: [PlatformUpdateManyWithWhereWithoutSceneInput!]
+  upsert: [PlatformUpsertWithWhereUniqueWithoutSceneInput!]
+}
+
+input PlatformUpdateManyWithWhereWithoutSceneInput {
+  data: PlatformUpdateManyMutationInput!
+  where: PlatformScalarWhereInput!
+}
+
+input PlatformUpdateWithoutSceneInput {
+  bounceMultiplier: FloatFieldUpdateOperationsInput
+  degsPerSec: FloatFieldUpdateOperationsInput
+  onlyBounceFront: BoolFieldUpdateOperationsInput
+  rotation: FloatFieldUpdateOperationsInput
+  useBouncer: BoolFieldUpdateOperationsInput
+  useRotator: BoolFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input PlatformUpdateWithWhereUniqueWithoutSceneInput {
+  data: PlatformUpdateWithoutSceneInput!
+  where: PlatformWhereUniqueInput!
+}
+
+input PlatformUpsertWithWhereUniqueWithoutSceneInput {
+  create: PlatformCreateWithoutSceneInput!
+  update: PlatformUpdateWithoutSceneInput!
+  where: PlatformWhereUniqueInput!
+}
+
 input PlatformWhereUniqueInput {
   id: Int
 }
 
 type Query {
+  crate(where: CrateWhereUniqueInput!): Crate
   scene(where: SceneWhereUniqueInput!): Scene
   scenes(after: SceneWhereUniqueInput, before: SceneWhereUniqueInput, first: Int, last: Int): [Scene!]!
 }
@@ -70,6 +425,40 @@ type Scene {
   id: Int!
   levelNumber: Int!
   platforms(after: PlatformWhereUniqueInput, before: PlatformWhereUniqueInput, first: Int, last: Int): [Platform!]!
+}
+
+input SceneCreateOrConnectWithoutcratesInput {
+  create: SceneCreateWithoutCratesInput!
+  where: SceneWhereUniqueInput!
+}
+
+input SceneCreateWithoutCratesInput {
+  enemies: EnemyCreateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateCreateManyWithoutSceneInput
+  levelNumber: Int
+  platforms: PlatformCreateManyWithoutSceneInput
+}
+
+input SceneUpdateOneWithoutCratesInput {
+  connect: SceneWhereUniqueInput
+  connectOrCreate: SceneCreateOrConnectWithoutcratesInput
+  create: SceneCreateWithoutCratesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SceneUpdateWithoutCratesInput
+  upsert: SceneUpsertWithoutCratesInput
+}
+
+input SceneUpdateWithoutCratesInput {
+  enemies: EnemyUpdateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateUpdateManyWithoutSceneInput
+  levelNumber: IntFieldUpdateOperationsInput
+  platforms: PlatformUpdateManyWithoutSceneInput
+}
+
+input SceneUpsertWithoutCratesInput {
+  create: SceneCreateWithoutCratesInput!
+  update: SceneUpdateWithoutCratesInput!
 }
 
 input SceneWhereUniqueInput {
