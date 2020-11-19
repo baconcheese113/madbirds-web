@@ -2,7 +2,7 @@ import * as React from 'react'
 import { gql, useQuery } from '@apollo/client';
 import { CircularProgress, makeStyles, Paper } from '@material-ui/core'
 import { Layout } from '../common'
-import ObjectControls from './ObjectControls';
+import SceneObjectControls from './SceneObjectControls';
 import SceneObject from './SceneObject';
 import SceneViewer from './SceneViewer';
 
@@ -19,11 +19,18 @@ const useClasses = makeStyles({
 export default function SceneEditor() {
   const classes = useClasses();
   const { data, loading, error } = useQuery(gql`
-    query getSceneEditor {
-      scene( where: { id: 0 }) {
+    query sceneEditorQuery {
+      scene( where: { id: 1 }) {
         id
+        ...sceneViewer_scene
+        crates {
+          id
+          ...sceneObjectControls_crate
+        }
       }
     }
+    ${SceneViewer.fragments.scene}
+    ${SceneObjectControls.fragments.crate}
   `)
   
   if (loading) return <CircularProgress />
@@ -39,7 +46,7 @@ export default function SceneEditor() {
           <SceneViewer scene={scene} />
         </Layout>
       </Paper>
-      <ObjectControls classes={{ root: classes.controls }} />
+      <SceneObjectControls crate={scene.crates[0]} classes={{ root: classes.controls }} />
     </Layout>
   )
 }
