@@ -10,9 +10,10 @@ export default function SceneViewer(props: Props) {
   const { scene } = props;
 
   return (
-    <svg width="800" height="400">
-      <circle cx="20" cy="300" r="16" />
-      <SceneObject crate={scene.crates[0]} isSelected />
+    <svg width="500" height="400">
+      <circle cx="40" cy="200" r="12" />
+      <rect x="0" y="368" width="500" height="32" fill="brown" />
+      {scene.crates.map((crate, idx) => <SceneObject crate={crate} isSelected={idx === 0} />)}
     </svg>
   )
 }

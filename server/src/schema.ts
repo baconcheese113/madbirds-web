@@ -1,6 +1,7 @@
 import { nexusPrisma } from 'nexus-plugin-prisma'
-import { makeSchema, mutationType, objectType, queryType } from '@nexus/schema'
+import { makeSchema, mutationType, objectType, queryType, stringArg } from '@nexus/schema'
 import { join } from 'path'
+import { Context } from './context'
 
 
 const schema = makeSchema({
@@ -15,6 +16,23 @@ const schema = makeSchema({
     mutationType({
       definition(t) {
         t.crud.updateOneCrate()
+        t.field('uploadJsonScene', {
+          type: "Boolean",
+          args: {
+            json: stringArg({
+              description: "JSON string with the entire scene to upload",
+              required: true
+            })
+          },
+          async resolve(root, args, { prisma }: Context) {
+            const json = JSON.parse(args.json);
+            for (const [idx, crate] of Object.entries(json.crates)) {
+              const newCrate = { x: crate.position.x * 50, y: crate.position.y * 50, rotation: crate.rotation, Scene: { connect: { id: 1 } } }
+              const upsert = await prisma.crate.upsert({ create: newCrate, update: newCrate, where: { id: Number.parseInt(idx) + 1 } })
+            }
+            return true
+          }
+        })
       }
     }),
     objectType({

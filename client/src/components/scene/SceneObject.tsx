@@ -11,7 +11,7 @@ export default function SceneObject(props: Props) {
   const { x, y } = crate
 
   return (
-    <rect x={x} y={400 - y} width="50" height="50" style={isSelected ? { strokeWidth:3,stroke:'rgb(200,200,200)'} : undefined} />
+    <rect x={x} y={400 - y} width="25" height="25" style={isSelected ? { strokeWidth:3,stroke:'rgb(200,200,200)'} : undefined} />
   )
 }
 

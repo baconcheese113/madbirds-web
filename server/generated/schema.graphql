@@ -267,6 +267,10 @@ input IntNullableFilter {
 
 type Mutation {
   updateOneCrate(data: CrateUpdateInput!, where: CrateWhereUniqueInput!): Crate
+  uploadJsonScene(
+    """JSON string with the entire scene to upload"""
+    json: String!
+  ): Boolean
 }
 
 input NestedBoolFilter {

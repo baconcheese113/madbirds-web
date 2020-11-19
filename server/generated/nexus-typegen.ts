@@ -513,6 +513,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     updateOneCrate: NexusGenRootTypes['Crate'] | null; // Crate
+    uploadJsonScene: boolean | null; // Boolean
   }
   Platform: { // field return type
     bounceMultiplier: number; // Float!
@@ -568,6 +569,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     updateOneCrate: 'Crate'
+    uploadJsonScene: 'Boolean'
   }
   Platform: { // field return type name
     bounceMultiplier: 'Float'
@@ -600,6 +602,9 @@ export interface NexusGenArgTypes {
     updateOneCrate: { // args
       data: NexusGenInputs['CrateUpdateInput']; // CrateUpdateInput!
       where: NexusGenInputs['CrateWhereUniqueInput']; // CrateWhereUniqueInput!
+    }
+    uploadJsonScene: { // args
+      json: string; // String!
     }
   }
   Query: {
