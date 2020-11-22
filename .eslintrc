@@ -45,6 +45,7 @@
         "reservedFirst": true
       }
     ],
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "prettier/prettier": "error",
     "react/no-array-index-key": "off",
