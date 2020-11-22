@@ -235,14 +235,6 @@ input FloatFilter {
   notIn: [Float!]
 }
 
-input IntFieldUpdateOperationsInput {
-  decrement: Int
-  divide: Int
-  increment: Int
-  multiply: Int
-  set: Int
-}
-
 input IntFilter {
   equals: Int
   gt: Int
@@ -268,7 +260,7 @@ input IntNullableFilter {
 type Mutation {
   updateOneCrate(data: CrateUpdateInput!, where: CrateWhereUniqueInput!): Crate
   uploadJsonScene(
-    """JSON string with the entire scene to upload"""
+    """JSON string with the entire scene to upload, probably from game client"""
     json: String!
   ): Boolean
 }
@@ -418,6 +410,10 @@ input PlatformWhereUniqueInput {
 
 type Query {
   crate(where: CrateWhereUniqueInput!): Crate
+  downloadJsonScene(
+    """The levelNumber for the scene to download"""
+    levelNumber: Int!
+  ): String
   scene(where: SceneWhereUniqueInput!): Scene
   scenes(after: SceneWhereUniqueInput, before: SceneWhereUniqueInput, first: Int, last: Int): [Scene!]!
 }
@@ -456,7 +452,6 @@ input SceneUpdateOneWithoutCratesInput {
 input SceneUpdateWithoutCratesInput {
   enemies: EnemyUpdateManyWithoutSceneInput
   explosiveCrates: ExplosiveCrateUpdateManyWithoutSceneInput
-  levelNumber: IntFieldUpdateOperationsInput
   platforms: PlatformUpdateManyWithoutSceneInput
 }
 
@@ -467,4 +462,5 @@ input SceneUpsertWithoutCratesInput {
 
 input SceneWhereUniqueInput {
   id: Int
+  levelNumber: Int
 }

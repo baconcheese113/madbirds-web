@@ -9,7 +9,7 @@ generator client {
 
 model Scene {
   id              Int              @id @default(autoincrement())
-  levelNumber     Int              @default(autoincrement())
+  levelNumber     Int              @default(autoincrement()) @unique
   crates          Crate[]
   explosiveCrates ExplosiveCrate[]
   enemies         Enemy[]
