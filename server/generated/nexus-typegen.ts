@@ -26,11 +26,70 @@ export interface NexusGenInputs {
     equals?: boolean | null; // Boolean
     not?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
   }
+  CrateCreateManyWithoutSceneInput: { // input type
+    connect?: NexusGenInputs['CrateWhereUniqueInput'][] | null; // [CrateWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['CrateCreateOrConnectWithoutSceneInput'][] | null; // [CrateCreateOrConnectWithoutSceneInput!]
+    create?: NexusGenInputs['CrateCreateWithoutSceneInput'][] | null; // [CrateCreateWithoutSceneInput!]
+  }
+  CrateCreateOrConnectWithoutSceneInput: { // input type
+    create: NexusGenInputs['CrateCreateWithoutSceneInput']; // CrateCreateWithoutSceneInput!
+    where: NexusGenInputs['CrateWhereUniqueInput']; // CrateWhereUniqueInput!
+  }
+  CrateCreateWithoutSceneInput: { // input type
+    rotation?: number | null; // Float
+    x?: number | null; // Float
+    y?: number | null; // Float
+  }
+  CrateScalarWhereInput: { // input type
+    AND?: NexusGenInputs['CrateScalarWhereInput'][] | null; // [CrateScalarWhereInput!]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    NOT?: NexusGenInputs['CrateScalarWhereInput'][] | null; // [CrateScalarWhereInput!]
+    OR?: NexusGenInputs['CrateScalarWhereInput'][] | null; // [CrateScalarWhereInput!]
+    rotation?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+    sceneId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    x?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+    y?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+  }
   CrateUpdateInput: { // input type
     rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
     Scene?: NexusGenInputs['SceneUpdateOneWithoutCratesInput'] | null; // SceneUpdateOneWithoutCratesInput
     x?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
     y?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+  }
+  CrateUpdateManyMutationInput: { // input type
+    rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    x?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    y?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+  }
+  CrateUpdateManyWithWhereWithoutSceneInput: { // input type
+    data: NexusGenInputs['CrateUpdateManyMutationInput']; // CrateUpdateManyMutationInput!
+    where: NexusGenInputs['CrateScalarWhereInput']; // CrateScalarWhereInput!
+  }
+  CrateUpdateManyWithoutSceneInput: { // input type
+    connect?: NexusGenInputs['CrateWhereUniqueInput'][] | null; // [CrateWhereUniqueInput!]
+    connectOrCreate?: NexusGenInputs['CrateCreateOrConnectWithoutSceneInput'][] | null; // [CrateCreateOrConnectWithoutSceneInput!]
+    create?: NexusGenInputs['CrateCreateWithoutSceneInput'][] | null; // [CrateCreateWithoutSceneInput!]
+    delete?: NexusGenInputs['CrateWhereUniqueInput'][] | null; // [CrateWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['CrateScalarWhereInput'][] | null; // [CrateScalarWhereInput!]
+    disconnect?: NexusGenInputs['CrateWhereUniqueInput'][] | null; // [CrateWhereUniqueInput!]
+    set?: NexusGenInputs['CrateWhereUniqueInput'][] | null; // [CrateWhereUniqueInput!]
+    update?: NexusGenInputs['CrateUpdateWithWhereUniqueWithoutSceneInput'][] | null; // [CrateUpdateWithWhereUniqueWithoutSceneInput!]
+    updateMany?: NexusGenInputs['CrateUpdateManyWithWhereWithoutSceneInput'][] | null; // [CrateUpdateManyWithWhereWithoutSceneInput!]
+    upsert?: NexusGenInputs['CrateUpsertWithWhereUniqueWithoutSceneInput'][] | null; // [CrateUpsertWithWhereUniqueWithoutSceneInput!]
+  }
+  CrateUpdateWithWhereUniqueWithoutSceneInput: { // input type
+    data: NexusGenInputs['CrateUpdateWithoutSceneInput']; // CrateUpdateWithoutSceneInput!
+    where: NexusGenInputs['CrateWhereUniqueInput']; // CrateWhereUniqueInput!
+  }
+  CrateUpdateWithoutSceneInput: { // input type
+    rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    x?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    y?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+  }
+  CrateUpsertWithWhereUniqueWithoutSceneInput: { // input type
+    create: NexusGenInputs['CrateCreateWithoutSceneInput']; // CrateCreateWithoutSceneInput!
+    update: NexusGenInputs['CrateUpdateWithoutSceneInput']; // CrateUpdateWithoutSceneInput!
+    where: NexusGenInputs['CrateWhereUniqueInput']; // CrateWhereUniqueInput!
   }
   CrateWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -58,6 +117,12 @@ export interface NexusGenInputs {
     sceneId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     x?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
     y?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+  }
+  EnemyUpdateInput: { // input type
+    rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    Scene?: NexusGenInputs['SceneUpdateOneWithoutEnemiesInput'] | null; // SceneUpdateOneWithoutEnemiesInput
+    x?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    y?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
   }
   EnemyUpdateManyMutationInput: { // input type
     rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -130,6 +195,17 @@ export interface NexusGenInputs {
     sceneId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     x?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
     y?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+  }
+  ExplosiveCrateUpdateInput: { // input type
+    chainReactionRadius?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    explosionForce?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    explosionRadius?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    hitSensitivity?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    onlyPlayerCanTrigger?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    Scene?: NexusGenInputs['SceneUpdateOneWithoutExplosiveCratesInput'] | null; // SceneUpdateOneWithoutExplosiveCratesInput
+    x?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    y?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
   }
   ExplosiveCrateUpdateManyMutationInput: { // input type
     chainReactionRadius?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -284,6 +360,17 @@ export interface NexusGenInputs {
     x?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
     y?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
   }
+  PlatformUpdateInput: { // input type
+    bounceMultiplier?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    degsPerSec?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    onlyBounceFront?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    rotation?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    Scene?: NexusGenInputs['SceneUpdateOneWithoutPlatformsInput'] | null; // SceneUpdateOneWithoutPlatformsInput
+    useBouncer?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    useRotator?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    x?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    y?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+  }
   PlatformUpdateManyMutationInput: { // input type
     bounceMultiplier?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
     degsPerSec?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
@@ -332,8 +419,27 @@ export interface NexusGenInputs {
   PlatformWhereUniqueInput: { // input type
     id?: number | null; // Int
   }
+  SceneCreateInput: { // input type
+    crates?: NexusGenInputs['CrateCreateManyWithoutSceneInput'] | null; // CrateCreateManyWithoutSceneInput
+    enemies?: NexusGenInputs['EnemyCreateManyWithoutSceneInput'] | null; // EnemyCreateManyWithoutSceneInput
+    explosiveCrates?: NexusGenInputs['ExplosiveCrateCreateManyWithoutSceneInput'] | null; // ExplosiveCrateCreateManyWithoutSceneInput
+    levelNumber?: number | null; // Int
+    platforms?: NexusGenInputs['PlatformCreateManyWithoutSceneInput'] | null; // PlatformCreateManyWithoutSceneInput
+  }
   SceneCreateOrConnectWithoutcratesInput: { // input type
     create: NexusGenInputs['SceneCreateWithoutCratesInput']; // SceneCreateWithoutCratesInput!
+    where: NexusGenInputs['SceneWhereUniqueInput']; // SceneWhereUniqueInput!
+  }
+  SceneCreateOrConnectWithoutenemiesInput: { // input type
+    create: NexusGenInputs['SceneCreateWithoutEnemiesInput']; // SceneCreateWithoutEnemiesInput!
+    where: NexusGenInputs['SceneWhereUniqueInput']; // SceneWhereUniqueInput!
+  }
+  SceneCreateOrConnectWithoutexplosiveCratesInput: { // input type
+    create: NexusGenInputs['SceneCreateWithoutExplosiveCratesInput']; // SceneCreateWithoutExplosiveCratesInput!
+    where: NexusGenInputs['SceneWhereUniqueInput']; // SceneWhereUniqueInput!
+  }
+  SceneCreateOrConnectWithoutplatformsInput: { // input type
+    create: NexusGenInputs['SceneCreateWithoutPlatformsInput']; // SceneCreateWithoutPlatformsInput!
     where: NexusGenInputs['SceneWhereUniqueInput']; // SceneWhereUniqueInput!
   }
   SceneCreateWithoutCratesInput: { // input type
@@ -341,6 +447,24 @@ export interface NexusGenInputs {
     explosiveCrates?: NexusGenInputs['ExplosiveCrateCreateManyWithoutSceneInput'] | null; // ExplosiveCrateCreateManyWithoutSceneInput
     levelNumber?: number | null; // Int
     platforms?: NexusGenInputs['PlatformCreateManyWithoutSceneInput'] | null; // PlatformCreateManyWithoutSceneInput
+  }
+  SceneCreateWithoutEnemiesInput: { // input type
+    crates?: NexusGenInputs['CrateCreateManyWithoutSceneInput'] | null; // CrateCreateManyWithoutSceneInput
+    explosiveCrates?: NexusGenInputs['ExplosiveCrateCreateManyWithoutSceneInput'] | null; // ExplosiveCrateCreateManyWithoutSceneInput
+    levelNumber?: number | null; // Int
+    platforms?: NexusGenInputs['PlatformCreateManyWithoutSceneInput'] | null; // PlatformCreateManyWithoutSceneInput
+  }
+  SceneCreateWithoutExplosiveCratesInput: { // input type
+    crates?: NexusGenInputs['CrateCreateManyWithoutSceneInput'] | null; // CrateCreateManyWithoutSceneInput
+    enemies?: NexusGenInputs['EnemyCreateManyWithoutSceneInput'] | null; // EnemyCreateManyWithoutSceneInput
+    levelNumber?: number | null; // Int
+    platforms?: NexusGenInputs['PlatformCreateManyWithoutSceneInput'] | null; // PlatformCreateManyWithoutSceneInput
+  }
+  SceneCreateWithoutPlatformsInput: { // input type
+    crates?: NexusGenInputs['CrateCreateManyWithoutSceneInput'] | null; // CrateCreateManyWithoutSceneInput
+    enemies?: NexusGenInputs['EnemyCreateManyWithoutSceneInput'] | null; // EnemyCreateManyWithoutSceneInput
+    explosiveCrates?: NexusGenInputs['ExplosiveCrateCreateManyWithoutSceneInput'] | null; // ExplosiveCrateCreateManyWithoutSceneInput
+    levelNumber?: number | null; // Int
   }
   SceneUpdateOneWithoutCratesInput: { // input type
     connect?: NexusGenInputs['SceneWhereUniqueInput'] | null; // SceneWhereUniqueInput
@@ -351,14 +475,68 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['SceneUpdateWithoutCratesInput'] | null; // SceneUpdateWithoutCratesInput
     upsert?: NexusGenInputs['SceneUpsertWithoutCratesInput'] | null; // SceneUpsertWithoutCratesInput
   }
+  SceneUpdateOneWithoutEnemiesInput: { // input type
+    connect?: NexusGenInputs['SceneWhereUniqueInput'] | null; // SceneWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['SceneCreateOrConnectWithoutenemiesInput'] | null; // SceneCreateOrConnectWithoutenemiesInput
+    create?: NexusGenInputs['SceneCreateWithoutEnemiesInput'] | null; // SceneCreateWithoutEnemiesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['SceneUpdateWithoutEnemiesInput'] | null; // SceneUpdateWithoutEnemiesInput
+    upsert?: NexusGenInputs['SceneUpsertWithoutEnemiesInput'] | null; // SceneUpsertWithoutEnemiesInput
+  }
+  SceneUpdateOneWithoutExplosiveCratesInput: { // input type
+    connect?: NexusGenInputs['SceneWhereUniqueInput'] | null; // SceneWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['SceneCreateOrConnectWithoutexplosiveCratesInput'] | null; // SceneCreateOrConnectWithoutexplosiveCratesInput
+    create?: NexusGenInputs['SceneCreateWithoutExplosiveCratesInput'] | null; // SceneCreateWithoutExplosiveCratesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['SceneUpdateWithoutExplosiveCratesInput'] | null; // SceneUpdateWithoutExplosiveCratesInput
+    upsert?: NexusGenInputs['SceneUpsertWithoutExplosiveCratesInput'] | null; // SceneUpsertWithoutExplosiveCratesInput
+  }
+  SceneUpdateOneWithoutPlatformsInput: { // input type
+    connect?: NexusGenInputs['SceneWhereUniqueInput'] | null; // SceneWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['SceneCreateOrConnectWithoutplatformsInput'] | null; // SceneCreateOrConnectWithoutplatformsInput
+    create?: NexusGenInputs['SceneCreateWithoutPlatformsInput'] | null; // SceneCreateWithoutPlatformsInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['SceneUpdateWithoutPlatformsInput'] | null; // SceneUpdateWithoutPlatformsInput
+    upsert?: NexusGenInputs['SceneUpsertWithoutPlatformsInput'] | null; // SceneUpsertWithoutPlatformsInput
+  }
   SceneUpdateWithoutCratesInput: { // input type
     enemies?: NexusGenInputs['EnemyUpdateManyWithoutSceneInput'] | null; // EnemyUpdateManyWithoutSceneInput
     explosiveCrates?: NexusGenInputs['ExplosiveCrateUpdateManyWithoutSceneInput'] | null; // ExplosiveCrateUpdateManyWithoutSceneInput
     platforms?: NexusGenInputs['PlatformUpdateManyWithoutSceneInput'] | null; // PlatformUpdateManyWithoutSceneInput
   }
+  SceneUpdateWithoutEnemiesInput: { // input type
+    crates?: NexusGenInputs['CrateUpdateManyWithoutSceneInput'] | null; // CrateUpdateManyWithoutSceneInput
+    explosiveCrates?: NexusGenInputs['ExplosiveCrateUpdateManyWithoutSceneInput'] | null; // ExplosiveCrateUpdateManyWithoutSceneInput
+    platforms?: NexusGenInputs['PlatformUpdateManyWithoutSceneInput'] | null; // PlatformUpdateManyWithoutSceneInput
+  }
+  SceneUpdateWithoutExplosiveCratesInput: { // input type
+    crates?: NexusGenInputs['CrateUpdateManyWithoutSceneInput'] | null; // CrateUpdateManyWithoutSceneInput
+    enemies?: NexusGenInputs['EnemyUpdateManyWithoutSceneInput'] | null; // EnemyUpdateManyWithoutSceneInput
+    platforms?: NexusGenInputs['PlatformUpdateManyWithoutSceneInput'] | null; // PlatformUpdateManyWithoutSceneInput
+  }
+  SceneUpdateWithoutPlatformsInput: { // input type
+    crates?: NexusGenInputs['CrateUpdateManyWithoutSceneInput'] | null; // CrateUpdateManyWithoutSceneInput
+    enemies?: NexusGenInputs['EnemyUpdateManyWithoutSceneInput'] | null; // EnemyUpdateManyWithoutSceneInput
+    explosiveCrates?: NexusGenInputs['ExplosiveCrateUpdateManyWithoutSceneInput'] | null; // ExplosiveCrateUpdateManyWithoutSceneInput
+  }
   SceneUpsertWithoutCratesInput: { // input type
     create: NexusGenInputs['SceneCreateWithoutCratesInput']; // SceneCreateWithoutCratesInput!
     update: NexusGenInputs['SceneUpdateWithoutCratesInput']; // SceneUpdateWithoutCratesInput!
+  }
+  SceneUpsertWithoutEnemiesInput: { // input type
+    create: NexusGenInputs['SceneCreateWithoutEnemiesInput']; // SceneCreateWithoutEnemiesInput!
+    update: NexusGenInputs['SceneUpdateWithoutEnemiesInput']; // SceneUpdateWithoutEnemiesInput!
+  }
+  SceneUpsertWithoutExplosiveCratesInput: { // input type
+    create: NexusGenInputs['SceneCreateWithoutExplosiveCratesInput']; // SceneCreateWithoutExplosiveCratesInput!
+    update: NexusGenInputs['SceneUpdateWithoutExplosiveCratesInput']; // SceneUpdateWithoutExplosiveCratesInput!
+  }
+  SceneUpsertWithoutPlatformsInput: { // input type
+    create: NexusGenInputs['SceneCreateWithoutPlatformsInput']; // SceneCreateWithoutPlatformsInput!
+    update: NexusGenInputs['SceneUpdateWithoutPlatformsInput']; // SceneUpdateWithoutPlatformsInput!
   }
   SceneWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -385,6 +563,7 @@ export interface NexusGenRootTypes {
     y: number; // Float!
   }
   Enemy: { // root type
+    id: number; // Int!
     rotation: number; // Float!
     x: number; // Float!
     y: number; // Float!
@@ -404,6 +583,7 @@ export interface NexusGenRootTypes {
   Platform: { // root type
     bounceMultiplier: number; // Float!
     degsPerSec: number; // Float!
+    id: number; // Int!
     onlyBounceFront: boolean; // Boolean!
     rotation: number; // Float!
     useBouncer: boolean; // Boolean!
@@ -421,12 +601,23 @@ export interface NexusGenRootTypes {
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   BoolFieldUpdateOperationsInput: NexusGenInputs['BoolFieldUpdateOperationsInput'];
   BoolFilter: NexusGenInputs['BoolFilter'];
+  CrateCreateManyWithoutSceneInput: NexusGenInputs['CrateCreateManyWithoutSceneInput'];
+  CrateCreateOrConnectWithoutSceneInput: NexusGenInputs['CrateCreateOrConnectWithoutSceneInput'];
+  CrateCreateWithoutSceneInput: NexusGenInputs['CrateCreateWithoutSceneInput'];
+  CrateScalarWhereInput: NexusGenInputs['CrateScalarWhereInput'];
   CrateUpdateInput: NexusGenInputs['CrateUpdateInput'];
+  CrateUpdateManyMutationInput: NexusGenInputs['CrateUpdateManyMutationInput'];
+  CrateUpdateManyWithWhereWithoutSceneInput: NexusGenInputs['CrateUpdateManyWithWhereWithoutSceneInput'];
+  CrateUpdateManyWithoutSceneInput: NexusGenInputs['CrateUpdateManyWithoutSceneInput'];
+  CrateUpdateWithWhereUniqueWithoutSceneInput: NexusGenInputs['CrateUpdateWithWhereUniqueWithoutSceneInput'];
+  CrateUpdateWithoutSceneInput: NexusGenInputs['CrateUpdateWithoutSceneInput'];
+  CrateUpsertWithWhereUniqueWithoutSceneInput: NexusGenInputs['CrateUpsertWithWhereUniqueWithoutSceneInput'];
   CrateWhereUniqueInput: NexusGenInputs['CrateWhereUniqueInput'];
   EnemyCreateManyWithoutSceneInput: NexusGenInputs['EnemyCreateManyWithoutSceneInput'];
   EnemyCreateOrConnectWithoutSceneInput: NexusGenInputs['EnemyCreateOrConnectWithoutSceneInput'];
   EnemyCreateWithoutSceneInput: NexusGenInputs['EnemyCreateWithoutSceneInput'];
   EnemyScalarWhereInput: NexusGenInputs['EnemyScalarWhereInput'];
+  EnemyUpdateInput: NexusGenInputs['EnemyUpdateInput'];
   EnemyUpdateManyMutationInput: NexusGenInputs['EnemyUpdateManyMutationInput'];
   EnemyUpdateManyWithWhereWithoutSceneInput: NexusGenInputs['EnemyUpdateManyWithWhereWithoutSceneInput'];
   EnemyUpdateManyWithoutSceneInput: NexusGenInputs['EnemyUpdateManyWithoutSceneInput'];
@@ -438,6 +629,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   ExplosiveCrateCreateOrConnectWithoutSceneInput: NexusGenInputs['ExplosiveCrateCreateOrConnectWithoutSceneInput'];
   ExplosiveCrateCreateWithoutSceneInput: NexusGenInputs['ExplosiveCrateCreateWithoutSceneInput'];
   ExplosiveCrateScalarWhereInput: NexusGenInputs['ExplosiveCrateScalarWhereInput'];
+  ExplosiveCrateUpdateInput: NexusGenInputs['ExplosiveCrateUpdateInput'];
   ExplosiveCrateUpdateManyMutationInput: NexusGenInputs['ExplosiveCrateUpdateManyMutationInput'];
   ExplosiveCrateUpdateManyWithWhereWithoutSceneInput: NexusGenInputs['ExplosiveCrateUpdateManyWithWhereWithoutSceneInput'];
   ExplosiveCrateUpdateManyWithoutSceneInput: NexusGenInputs['ExplosiveCrateUpdateManyWithoutSceneInput'];
@@ -457,6 +649,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PlatformCreateOrConnectWithoutSceneInput: NexusGenInputs['PlatformCreateOrConnectWithoutSceneInput'];
   PlatformCreateWithoutSceneInput: NexusGenInputs['PlatformCreateWithoutSceneInput'];
   PlatformScalarWhereInput: NexusGenInputs['PlatformScalarWhereInput'];
+  PlatformUpdateInput: NexusGenInputs['PlatformUpdateInput'];
   PlatformUpdateManyMutationInput: NexusGenInputs['PlatformUpdateManyMutationInput'];
   PlatformUpdateManyWithWhereWithoutSceneInput: NexusGenInputs['PlatformUpdateManyWithWhereWithoutSceneInput'];
   PlatformUpdateManyWithoutSceneInput: NexusGenInputs['PlatformUpdateManyWithoutSceneInput'];
@@ -464,11 +657,27 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PlatformUpdateWithoutSceneInput: NexusGenInputs['PlatformUpdateWithoutSceneInput'];
   PlatformUpsertWithWhereUniqueWithoutSceneInput: NexusGenInputs['PlatformUpsertWithWhereUniqueWithoutSceneInput'];
   PlatformWhereUniqueInput: NexusGenInputs['PlatformWhereUniqueInput'];
+  SceneCreateInput: NexusGenInputs['SceneCreateInput'];
   SceneCreateOrConnectWithoutcratesInput: NexusGenInputs['SceneCreateOrConnectWithoutcratesInput'];
+  SceneCreateOrConnectWithoutenemiesInput: NexusGenInputs['SceneCreateOrConnectWithoutenemiesInput'];
+  SceneCreateOrConnectWithoutexplosiveCratesInput: NexusGenInputs['SceneCreateOrConnectWithoutexplosiveCratesInput'];
+  SceneCreateOrConnectWithoutplatformsInput: NexusGenInputs['SceneCreateOrConnectWithoutplatformsInput'];
   SceneCreateWithoutCratesInput: NexusGenInputs['SceneCreateWithoutCratesInput'];
+  SceneCreateWithoutEnemiesInput: NexusGenInputs['SceneCreateWithoutEnemiesInput'];
+  SceneCreateWithoutExplosiveCratesInput: NexusGenInputs['SceneCreateWithoutExplosiveCratesInput'];
+  SceneCreateWithoutPlatformsInput: NexusGenInputs['SceneCreateWithoutPlatformsInput'];
   SceneUpdateOneWithoutCratesInput: NexusGenInputs['SceneUpdateOneWithoutCratesInput'];
+  SceneUpdateOneWithoutEnemiesInput: NexusGenInputs['SceneUpdateOneWithoutEnemiesInput'];
+  SceneUpdateOneWithoutExplosiveCratesInput: NexusGenInputs['SceneUpdateOneWithoutExplosiveCratesInput'];
+  SceneUpdateOneWithoutPlatformsInput: NexusGenInputs['SceneUpdateOneWithoutPlatformsInput'];
   SceneUpdateWithoutCratesInput: NexusGenInputs['SceneUpdateWithoutCratesInput'];
+  SceneUpdateWithoutEnemiesInput: NexusGenInputs['SceneUpdateWithoutEnemiesInput'];
+  SceneUpdateWithoutExplosiveCratesInput: NexusGenInputs['SceneUpdateWithoutExplosiveCratesInput'];
+  SceneUpdateWithoutPlatformsInput: NexusGenInputs['SceneUpdateWithoutPlatformsInput'];
   SceneUpsertWithoutCratesInput: NexusGenInputs['SceneUpsertWithoutCratesInput'];
+  SceneUpsertWithoutEnemiesInput: NexusGenInputs['SceneUpsertWithoutEnemiesInput'];
+  SceneUpsertWithoutExplosiveCratesInput: NexusGenInputs['SceneUpsertWithoutExplosiveCratesInput'];
+  SceneUpsertWithoutPlatformsInput: NexusGenInputs['SceneUpsertWithoutPlatformsInput'];
   SceneWhereUniqueInput: NexusGenInputs['SceneWhereUniqueInput'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
@@ -486,6 +695,7 @@ export interface NexusGenFieldTypes {
     y: number; // Float!
   }
   Enemy: { // field return type
+    id: number; // Int!
     rotation: number; // Float!
     Scene: NexusGenRootTypes['Scene'] | null; // Scene
     x: number; // Float!
@@ -504,12 +714,17 @@ export interface NexusGenFieldTypes {
     y: number; // Float!
   }
   Mutation: { // field return type
+    createOneScene: NexusGenRootTypes['Scene']; // Scene!
     updateOneCrate: NexusGenRootTypes['Crate'] | null; // Crate
+    updateOneEnemy: NexusGenRootTypes['Enemy'] | null; // Enemy
+    updateOneExplosiveCrate: NexusGenRootTypes['ExplosiveCrate'] | null; // ExplosiveCrate
+    updateOnePlatform: NexusGenRootTypes['Platform'] | null; // Platform
     uploadJsonScene: boolean | null; // Boolean
   }
   Platform: { // field return type
     bounceMultiplier: number; // Float!
     degsPerSec: number; // Float!
+    id: number; // Int!
     onlyBounceFront: boolean; // Boolean!
     rotation: number; // Float!
     Scene: NexusGenRootTypes['Scene'] | null; // Scene
@@ -521,6 +736,9 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     crate: NexusGenRootTypes['Crate'] | null; // Crate
     downloadJsonScene: string | null; // String
+    enemy: NexusGenRootTypes['Enemy'] | null; // Enemy
+    explosiveCrate: NexusGenRootTypes['ExplosiveCrate'] | null; // ExplosiveCrate
+    platform: NexusGenRootTypes['Platform'] | null; // Platform
     scene: NexusGenRootTypes['Scene'] | null; // Scene
     scenes: NexusGenRootTypes['Scene'][]; // [Scene!]!
   }
@@ -543,6 +761,7 @@ export interface NexusGenFieldTypeNames {
     y: 'Float'
   }
   Enemy: { // field return type name
+    id: 'Int'
     rotation: 'Float'
     Scene: 'Scene'
     x: 'Float'
@@ -561,12 +780,17 @@ export interface NexusGenFieldTypeNames {
     y: 'Float'
   }
   Mutation: { // field return type name
+    createOneScene: 'Scene'
     updateOneCrate: 'Crate'
+    updateOneEnemy: 'Enemy'
+    updateOneExplosiveCrate: 'ExplosiveCrate'
+    updateOnePlatform: 'Platform'
     uploadJsonScene: 'Boolean'
   }
   Platform: { // field return type name
     bounceMultiplier: 'Float'
     degsPerSec: 'Float'
+    id: 'Int'
     onlyBounceFront: 'Boolean'
     rotation: 'Float'
     Scene: 'Scene'
@@ -578,6 +802,9 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     crate: 'Crate'
     downloadJsonScene: 'String'
+    enemy: 'Enemy'
+    explosiveCrate: 'ExplosiveCrate'
+    platform: 'Platform'
     scene: 'Scene'
     scenes: 'Scene'
   }
@@ -593,9 +820,24 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createOneScene: { // args
+      data: NexusGenInputs['SceneCreateInput']; // SceneCreateInput!
+    }
     updateOneCrate: { // args
       data: NexusGenInputs['CrateUpdateInput']; // CrateUpdateInput!
       where: NexusGenInputs['CrateWhereUniqueInput']; // CrateWhereUniqueInput!
+    }
+    updateOneEnemy: { // args
+      data: NexusGenInputs['EnemyUpdateInput']; // EnemyUpdateInput!
+      where: NexusGenInputs['EnemyWhereUniqueInput']; // EnemyWhereUniqueInput!
+    }
+    updateOneExplosiveCrate: { // args
+      data: NexusGenInputs['ExplosiveCrateUpdateInput']; // ExplosiveCrateUpdateInput!
+      where: NexusGenInputs['ExplosiveCrateWhereUniqueInput']; // ExplosiveCrateWhereUniqueInput!
+    }
+    updateOnePlatform: { // args
+      data: NexusGenInputs['PlatformUpdateInput']; // PlatformUpdateInput!
+      where: NexusGenInputs['PlatformWhereUniqueInput']; // PlatformWhereUniqueInput!
     }
     uploadJsonScene: { // args
       json: string; // String!
@@ -607,6 +849,15 @@ export interface NexusGenArgTypes {
     }
     downloadJsonScene: { // args
       levelNumber: number; // Int!
+    }
+    enemy: { // args
+      where: NexusGenInputs['EnemyWhereUniqueInput']; // EnemyWhereUniqueInput!
+    }
+    explosiveCrate: { // args
+      where: NexusGenInputs['ExplosiveCrateWhereUniqueInput']; // ExplosiveCrateWhereUniqueInput!
+    }
+    platform: { // args
+      where: NexusGenInputs['PlatformWhereUniqueInput']; // PlatformWhereUniqueInput!
     }
     scene: { // args
       where: NexusGenInputs['SceneWhereUniqueInput']; // SceneWhereUniqueInput!
@@ -653,7 +904,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Crate" | "Enemy" | "ExplosiveCrate" | "Mutation" | "Platform" | "Query" | "Scene";
 
-export type NexusGenInputNames = "BoolFieldUpdateOperationsInput" | "BoolFilter" | "CrateUpdateInput" | "CrateWhereUniqueInput" | "EnemyCreateManyWithoutSceneInput" | "EnemyCreateOrConnectWithoutSceneInput" | "EnemyCreateWithoutSceneInput" | "EnemyScalarWhereInput" | "EnemyUpdateManyMutationInput" | "EnemyUpdateManyWithWhereWithoutSceneInput" | "EnemyUpdateManyWithoutSceneInput" | "EnemyUpdateWithWhereUniqueWithoutSceneInput" | "EnemyUpdateWithoutSceneInput" | "EnemyUpsertWithWhereUniqueWithoutSceneInput" | "EnemyWhereUniqueInput" | "ExplosiveCrateCreateManyWithoutSceneInput" | "ExplosiveCrateCreateOrConnectWithoutSceneInput" | "ExplosiveCrateCreateWithoutSceneInput" | "ExplosiveCrateScalarWhereInput" | "ExplosiveCrateUpdateManyMutationInput" | "ExplosiveCrateUpdateManyWithWhereWithoutSceneInput" | "ExplosiveCrateUpdateManyWithoutSceneInput" | "ExplosiveCrateUpdateWithWhereUniqueWithoutSceneInput" | "ExplosiveCrateUpdateWithoutSceneInput" | "ExplosiveCrateUpsertWithWhereUniqueWithoutSceneInput" | "ExplosiveCrateWhereUniqueInput" | "FloatFieldUpdateOperationsInput" | "FloatFilter" | "IntFilter" | "IntNullableFilter" | "NestedBoolFilter" | "NestedFloatFilter" | "NestedIntFilter" | "NestedIntNullableFilter" | "PlatformCreateManyWithoutSceneInput" | "PlatformCreateOrConnectWithoutSceneInput" | "PlatformCreateWithoutSceneInput" | "PlatformScalarWhereInput" | "PlatformUpdateManyMutationInput" | "PlatformUpdateManyWithWhereWithoutSceneInput" | "PlatformUpdateManyWithoutSceneInput" | "PlatformUpdateWithWhereUniqueWithoutSceneInput" | "PlatformUpdateWithoutSceneInput" | "PlatformUpsertWithWhereUniqueWithoutSceneInput" | "PlatformWhereUniqueInput" | "SceneCreateOrConnectWithoutcratesInput" | "SceneCreateWithoutCratesInput" | "SceneUpdateOneWithoutCratesInput" | "SceneUpdateWithoutCratesInput" | "SceneUpsertWithoutCratesInput" | "SceneWhereUniqueInput";
+export type NexusGenInputNames = "BoolFieldUpdateOperationsInput" | "BoolFilter" | "CrateCreateManyWithoutSceneInput" | "CrateCreateOrConnectWithoutSceneInput" | "CrateCreateWithoutSceneInput" | "CrateScalarWhereInput" | "CrateUpdateInput" | "CrateUpdateManyMutationInput" | "CrateUpdateManyWithWhereWithoutSceneInput" | "CrateUpdateManyWithoutSceneInput" | "CrateUpdateWithWhereUniqueWithoutSceneInput" | "CrateUpdateWithoutSceneInput" | "CrateUpsertWithWhereUniqueWithoutSceneInput" | "CrateWhereUniqueInput" | "EnemyCreateManyWithoutSceneInput" | "EnemyCreateOrConnectWithoutSceneInput" | "EnemyCreateWithoutSceneInput" | "EnemyScalarWhereInput" | "EnemyUpdateInput" | "EnemyUpdateManyMutationInput" | "EnemyUpdateManyWithWhereWithoutSceneInput" | "EnemyUpdateManyWithoutSceneInput" | "EnemyUpdateWithWhereUniqueWithoutSceneInput" | "EnemyUpdateWithoutSceneInput" | "EnemyUpsertWithWhereUniqueWithoutSceneInput" | "EnemyWhereUniqueInput" | "ExplosiveCrateCreateManyWithoutSceneInput" | "ExplosiveCrateCreateOrConnectWithoutSceneInput" | "ExplosiveCrateCreateWithoutSceneInput" | "ExplosiveCrateScalarWhereInput" | "ExplosiveCrateUpdateInput" | "ExplosiveCrateUpdateManyMutationInput" | "ExplosiveCrateUpdateManyWithWhereWithoutSceneInput" | "ExplosiveCrateUpdateManyWithoutSceneInput" | "ExplosiveCrateUpdateWithWhereUniqueWithoutSceneInput" | "ExplosiveCrateUpdateWithoutSceneInput" | "ExplosiveCrateUpsertWithWhereUniqueWithoutSceneInput" | "ExplosiveCrateWhereUniqueInput" | "FloatFieldUpdateOperationsInput" | "FloatFilter" | "IntFilter" | "IntNullableFilter" | "NestedBoolFilter" | "NestedFloatFilter" | "NestedIntFilter" | "NestedIntNullableFilter" | "PlatformCreateManyWithoutSceneInput" | "PlatformCreateOrConnectWithoutSceneInput" | "PlatformCreateWithoutSceneInput" | "PlatformScalarWhereInput" | "PlatformUpdateInput" | "PlatformUpdateManyMutationInput" | "PlatformUpdateManyWithWhereWithoutSceneInput" | "PlatformUpdateManyWithoutSceneInput" | "PlatformUpdateWithWhereUniqueWithoutSceneInput" | "PlatformUpdateWithoutSceneInput" | "PlatformUpsertWithWhereUniqueWithoutSceneInput" | "PlatformWhereUniqueInput" | "SceneCreateInput" | "SceneCreateOrConnectWithoutcratesInput" | "SceneCreateOrConnectWithoutenemiesInput" | "SceneCreateOrConnectWithoutexplosiveCratesInput" | "SceneCreateOrConnectWithoutplatformsInput" | "SceneCreateWithoutCratesInput" | "SceneCreateWithoutEnemiesInput" | "SceneCreateWithoutExplosiveCratesInput" | "SceneCreateWithoutPlatformsInput" | "SceneUpdateOneWithoutCratesInput" | "SceneUpdateOneWithoutEnemiesInput" | "SceneUpdateOneWithoutExplosiveCratesInput" | "SceneUpdateOneWithoutPlatformsInput" | "SceneUpdateWithoutCratesInput" | "SceneUpdateWithoutEnemiesInput" | "SceneUpdateWithoutExplosiveCratesInput" | "SceneUpdateWithoutPlatformsInput" | "SceneUpsertWithoutCratesInput" | "SceneUpsertWithoutEnemiesInput" | "SceneUpsertWithoutExplosiveCratesInput" | "SceneUpsertWithoutPlatformsInput" | "SceneWhereUniqueInput";
 
 export type NexusGenEnumNames = never;
 

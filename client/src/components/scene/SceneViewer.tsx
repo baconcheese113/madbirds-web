@@ -1,20 +1,42 @@
-import { gql } from '@apollo/client'
 import * as React from 'react'
-import SceneObject from './SceneObject'
+import { gql } from '@apollo/client'
+import { makeStyles } from '@material-ui/core'
+import { objectSizes } from '../../helpers/constants'
+import Crate from './Crate'
 import { sceneViewer_scene } from './__generated__/sceneViewer_scene'
+import ExplosiveCrate from './ExplosiveCrate'
+import Enemy from './Enemy'
 
+const useClasses = makeStyles({
+  svg: {
+    flex: 1,
+    backgroundColor: '#333',
+    fill: '#8a9',
+  },
+})
 type Props = {
   scene: sceneViewer_scene,
+  mini?: boolean,
 }
 export default function SceneViewer(props: Props) {
-  const { scene } = props
+  const { scene, mini } = props
+  const classes = useClasses({ mini })
+  const sceneHeight = objectSizes.scene.height
+  const sceneWidth = objectSizes.scene.width
+
+  console.log(scene)
 
   return (
-    <svg height="400" width="500">
-      <circle cx="40" cy="200" r="12" />
-      <rect fill="brown" height="32" width="500" x="0" y="368" />
-      {scene.crates.map((crate, idx) => (
-        <SceneObject crate={crate} isSelected={idx === 0} />
+    <svg className={classes.svg} height="100%" viewBox={`0 0 ${sceneWidth} ${sceneHeight}`} width="100%">
+      <circle cx={20} cy={sceneHeight - 20} r={objectSizes.player.width / 2} />
+      {scene?.crates.map((crate, idx) => (
+        <Crate key={crate.id} crate={crate} isSelected={idx === 0} />
+      ))}
+      {scene?.explosiveCrates.map((explosiveCrate, idx) => (
+        <ExplosiveCrate key={explosiveCrate.id} explosiveCrate={explosiveCrate} isSelected={idx === 0} />
+      ))}
+      {scene?.enemies.map((enemy, idx) => (
+        <Enemy key={enemy.id} enemy={enemy} isSelected={idx === 0} />
       ))}
     </svg>
   )
@@ -26,9 +48,19 @@ SceneViewer.fragments = {
       __typename
       crates {
         id
-        ...sceneObject_crate
+        ...crate_crate
+      }
+      explosiveCrates {
+        id
+        ...explosiveCrate_explosiveCrate
+      }
+      enemies {
+        id
+        ...enemy_enemy
       }
     }
-    ${SceneObject.fragments.crate}
+    ${Crate.fragments.crate}
+    ${ExplosiveCrate.fragments.explosiveCrate}
+    ${Enemy.fragments.enemy}
   `,
 }

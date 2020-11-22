@@ -19,6 +19,34 @@ type Crate {
   y: Float!
 }
 
+input CrateCreateManyWithoutSceneInput {
+  connect: [CrateWhereUniqueInput!]
+  connectOrCreate: [CrateCreateOrConnectWithoutSceneInput!]
+  create: [CrateCreateWithoutSceneInput!]
+}
+
+input CrateCreateOrConnectWithoutSceneInput {
+  create: CrateCreateWithoutSceneInput!
+  where: CrateWhereUniqueInput!
+}
+
+input CrateCreateWithoutSceneInput {
+  rotation: Float
+  x: Float
+  y: Float
+}
+
+input CrateScalarWhereInput {
+  AND: [CrateScalarWhereInput!]
+  id: IntFilter
+  NOT: [CrateScalarWhereInput!]
+  OR: [CrateScalarWhereInput!]
+  rotation: FloatFilter
+  sceneId: IntNullableFilter
+  x: FloatFilter
+  y: FloatFilter
+}
+
 input CrateUpdateInput {
   rotation: FloatFieldUpdateOperationsInput
   Scene: SceneUpdateOneWithoutCratesInput
@@ -26,11 +54,53 @@ input CrateUpdateInput {
   y: FloatFieldUpdateOperationsInput
 }
 
+input CrateUpdateManyMutationInput {
+  rotation: FloatFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input CrateUpdateManyWithoutSceneInput {
+  connect: [CrateWhereUniqueInput!]
+  connectOrCreate: [CrateCreateOrConnectWithoutSceneInput!]
+  create: [CrateCreateWithoutSceneInput!]
+  delete: [CrateWhereUniqueInput!]
+  deleteMany: [CrateScalarWhereInput!]
+  disconnect: [CrateWhereUniqueInput!]
+  set: [CrateWhereUniqueInput!]
+  update: [CrateUpdateWithWhereUniqueWithoutSceneInput!]
+  updateMany: [CrateUpdateManyWithWhereWithoutSceneInput!]
+  upsert: [CrateUpsertWithWhereUniqueWithoutSceneInput!]
+}
+
+input CrateUpdateManyWithWhereWithoutSceneInput {
+  data: CrateUpdateManyMutationInput!
+  where: CrateScalarWhereInput!
+}
+
+input CrateUpdateWithoutSceneInput {
+  rotation: FloatFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
+}
+
+input CrateUpdateWithWhereUniqueWithoutSceneInput {
+  data: CrateUpdateWithoutSceneInput!
+  where: CrateWhereUniqueInput!
+}
+
+input CrateUpsertWithWhereUniqueWithoutSceneInput {
+  create: CrateCreateWithoutSceneInput!
+  update: CrateUpdateWithoutSceneInput!
+  where: CrateWhereUniqueInput!
+}
+
 input CrateWhereUniqueInput {
   id: Int
 }
 
 type Enemy {
+  id: Int!
   rotation: Float!
   Scene: Scene
   x: Float!
@@ -63,6 +133,13 @@ input EnemyScalarWhereInput {
   sceneId: IntNullableFilter
   x: FloatFilter
   y: FloatFilter
+}
+
+input EnemyUpdateInput {
+  rotation: FloatFieldUpdateOperationsInput
+  Scene: SceneUpdateOneWithoutEnemiesInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
 }
 
 input EnemyUpdateManyMutationInput {
@@ -159,6 +236,18 @@ input ExplosiveCrateScalarWhereInput {
   sceneId: IntNullableFilter
   x: FloatFilter
   y: FloatFilter
+}
+
+input ExplosiveCrateUpdateInput {
+  chainReactionRadius: FloatFieldUpdateOperationsInput
+  explosionForce: FloatFieldUpdateOperationsInput
+  explosionRadius: FloatFieldUpdateOperationsInput
+  hitSensitivity: FloatFieldUpdateOperationsInput
+  onlyPlayerCanTrigger: BoolFieldUpdateOperationsInput
+  rotation: FloatFieldUpdateOperationsInput
+  Scene: SceneUpdateOneWithoutExplosiveCratesInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
 }
 
 input ExplosiveCrateUpdateManyMutationInput {
@@ -258,7 +347,11 @@ input IntNullableFilter {
 }
 
 type Mutation {
+  createOneScene(data: SceneCreateInput!): Scene!
   updateOneCrate(data: CrateUpdateInput!, where: CrateWhereUniqueInput!): Crate
+  updateOneEnemy(data: EnemyUpdateInput!, where: EnemyWhereUniqueInput!): Enemy
+  updateOneExplosiveCrate(data: ExplosiveCrateUpdateInput!, where: ExplosiveCrateWhereUniqueInput!): ExplosiveCrate
+  updateOnePlatform(data: PlatformUpdateInput!, where: PlatformWhereUniqueInput!): Platform
   uploadJsonScene(
     """JSON string with the entire scene to upload, probably from game client"""
     json: String!
@@ -306,6 +399,7 @@ input NestedIntNullableFilter {
 type Platform {
   bounceMultiplier: Float!
   degsPerSec: Float!
+  id: Int!
   onlyBounceFront: Boolean!
   rotation: Float!
   Scene: Scene
@@ -351,6 +445,18 @@ input PlatformScalarWhereInput {
   useRotator: BoolFilter
   x: FloatFilter
   y: FloatFilter
+}
+
+input PlatformUpdateInput {
+  bounceMultiplier: FloatFieldUpdateOperationsInput
+  degsPerSec: FloatFieldUpdateOperationsInput
+  onlyBounceFront: BoolFieldUpdateOperationsInput
+  rotation: FloatFieldUpdateOperationsInput
+  Scene: SceneUpdateOneWithoutPlatformsInput
+  useBouncer: BoolFieldUpdateOperationsInput
+  useRotator: BoolFieldUpdateOperationsInput
+  x: FloatFieldUpdateOperationsInput
+  y: FloatFieldUpdateOperationsInput
 }
 
 input PlatformUpdateManyMutationInput {
@@ -414,6 +520,9 @@ type Query {
     """The levelNumber for the scene to download"""
     levelNumber: Int!
   ): String
+  enemy(where: EnemyWhereUniqueInput!): Enemy
+  explosiveCrate(where: ExplosiveCrateWhereUniqueInput!): ExplosiveCrate
+  platform(where: PlatformWhereUniqueInput!): Platform
   scene(where: SceneWhereUniqueInput!): Scene
   scenes(after: SceneWhereUniqueInput, before: SceneWhereUniqueInput, first: Int, last: Int): [Scene!]!
 }
@@ -427,8 +536,31 @@ type Scene {
   platforms(after: PlatformWhereUniqueInput, before: PlatformWhereUniqueInput, first: Int, last: Int): [Platform!]!
 }
 
+input SceneCreateInput {
+  crates: CrateCreateManyWithoutSceneInput
+  enemies: EnemyCreateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateCreateManyWithoutSceneInput
+  levelNumber: Int
+  platforms: PlatformCreateManyWithoutSceneInput
+}
+
 input SceneCreateOrConnectWithoutcratesInput {
   create: SceneCreateWithoutCratesInput!
+  where: SceneWhereUniqueInput!
+}
+
+input SceneCreateOrConnectWithoutenemiesInput {
+  create: SceneCreateWithoutEnemiesInput!
+  where: SceneWhereUniqueInput!
+}
+
+input SceneCreateOrConnectWithoutexplosiveCratesInput {
+  create: SceneCreateWithoutExplosiveCratesInput!
+  where: SceneWhereUniqueInput!
+}
+
+input SceneCreateOrConnectWithoutplatformsInput {
+  create: SceneCreateWithoutPlatformsInput!
   where: SceneWhereUniqueInput!
 }
 
@@ -437,6 +569,27 @@ input SceneCreateWithoutCratesInput {
   explosiveCrates: ExplosiveCrateCreateManyWithoutSceneInput
   levelNumber: Int
   platforms: PlatformCreateManyWithoutSceneInput
+}
+
+input SceneCreateWithoutEnemiesInput {
+  crates: CrateCreateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateCreateManyWithoutSceneInput
+  levelNumber: Int
+  platforms: PlatformCreateManyWithoutSceneInput
+}
+
+input SceneCreateWithoutExplosiveCratesInput {
+  crates: CrateCreateManyWithoutSceneInput
+  enemies: EnemyCreateManyWithoutSceneInput
+  levelNumber: Int
+  platforms: PlatformCreateManyWithoutSceneInput
+}
+
+input SceneCreateWithoutPlatformsInput {
+  crates: CrateCreateManyWithoutSceneInput
+  enemies: EnemyCreateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateCreateManyWithoutSceneInput
+  levelNumber: Int
 }
 
 input SceneUpdateOneWithoutCratesInput {
@@ -449,15 +602,78 @@ input SceneUpdateOneWithoutCratesInput {
   upsert: SceneUpsertWithoutCratesInput
 }
 
+input SceneUpdateOneWithoutEnemiesInput {
+  connect: SceneWhereUniqueInput
+  connectOrCreate: SceneCreateOrConnectWithoutenemiesInput
+  create: SceneCreateWithoutEnemiesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SceneUpdateWithoutEnemiesInput
+  upsert: SceneUpsertWithoutEnemiesInput
+}
+
+input SceneUpdateOneWithoutExplosiveCratesInput {
+  connect: SceneWhereUniqueInput
+  connectOrCreate: SceneCreateOrConnectWithoutexplosiveCratesInput
+  create: SceneCreateWithoutExplosiveCratesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SceneUpdateWithoutExplosiveCratesInput
+  upsert: SceneUpsertWithoutExplosiveCratesInput
+}
+
+input SceneUpdateOneWithoutPlatformsInput {
+  connect: SceneWhereUniqueInput
+  connectOrCreate: SceneCreateOrConnectWithoutplatformsInput
+  create: SceneCreateWithoutPlatformsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SceneUpdateWithoutPlatformsInput
+  upsert: SceneUpsertWithoutPlatformsInput
+}
+
 input SceneUpdateWithoutCratesInput {
   enemies: EnemyUpdateManyWithoutSceneInput
   explosiveCrates: ExplosiveCrateUpdateManyWithoutSceneInput
   platforms: PlatformUpdateManyWithoutSceneInput
 }
 
+input SceneUpdateWithoutEnemiesInput {
+  crates: CrateUpdateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateUpdateManyWithoutSceneInput
+  platforms: PlatformUpdateManyWithoutSceneInput
+}
+
+input SceneUpdateWithoutExplosiveCratesInput {
+  crates: CrateUpdateManyWithoutSceneInput
+  enemies: EnemyUpdateManyWithoutSceneInput
+  platforms: PlatformUpdateManyWithoutSceneInput
+}
+
+input SceneUpdateWithoutPlatformsInput {
+  crates: CrateUpdateManyWithoutSceneInput
+  enemies: EnemyUpdateManyWithoutSceneInput
+  explosiveCrates: ExplosiveCrateUpdateManyWithoutSceneInput
+}
+
 input SceneUpsertWithoutCratesInput {
   create: SceneCreateWithoutCratesInput!
   update: SceneUpdateWithoutCratesInput!
+}
+
+input SceneUpsertWithoutEnemiesInput {
+  create: SceneCreateWithoutEnemiesInput!
+  update: SceneUpdateWithoutEnemiesInput!
+}
+
+input SceneUpsertWithoutExplosiveCratesInput {
+  create: SceneCreateWithoutExplosiveCratesInput!
+  update: SceneUpdateWithoutExplosiveCratesInput!
+}
+
+input SceneUpsertWithoutPlatformsInput {
+  create: SceneCreateWithoutPlatformsInput!
+  update: SceneUpdateWithoutPlatformsInput!
 }
 
 input SceneWhereUniqueInput {

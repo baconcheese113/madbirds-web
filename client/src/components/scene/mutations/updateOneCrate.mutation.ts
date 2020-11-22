@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
-export const updateOneCrate = gql`
+export const updateOneCrateMutation = gql`
   mutation updateOneCrate($data: CrateUpdateInput!, $where: CrateWhereUniqueInput!) {
     updateOneCrate(data: $data, where: $where) {
       id

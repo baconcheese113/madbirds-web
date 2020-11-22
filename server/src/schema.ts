@@ -9,8 +9,11 @@ const schema = makeSchema({
     queryType({
       definition(t) {
         t.crud.scene()
-        t.crud.scenes({ pagination: true })
+        t.crud.scenes()
         t.crud.crate()
+        t.crud.explosiveCrate()
+        t.crud.enemy()
+        t.crud.platform()
         t.field('downloadJsonScene', {
           type: 'String',
           args: {
@@ -33,7 +36,11 @@ const schema = makeSchema({
     }),
     mutationType({
       definition(t) {
+        t.crud.createOneScene()
         t.crud.updateOneCrate()
+        t.crud.updateOneExplosiveCrate()
+        t.crud.updateOneEnemy()
+        t.crud.updateOnePlatform()
         t.field('uploadJsonScene', {
           type: 'Boolean',
           args: {
@@ -105,6 +112,7 @@ const schema = makeSchema({
     objectType({
       name: 'Enemy',
       definition(t) {
+        t.model.id()
         t.model.x()
         t.model.y()
         t.model.rotation()
@@ -114,6 +122,7 @@ const schema = makeSchema({
     objectType({
       name: 'Platform',
       definition(t) {
+        t.model.id()
         t.model.x()
         t.model.y()
         t.model.rotation()

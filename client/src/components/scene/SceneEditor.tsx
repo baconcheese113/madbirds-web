@@ -1,51 +1,46 @@
 import * as React from 'react'
 import { gql, useQuery } from '@apollo/client'
-import { CircularProgress, makeStyles, Paper } from '@material-ui/core'
+import { CircularProgress, Paper } from '@material-ui/core'
 import { Layout } from '../common'
-import SceneObjectControls from './SceneObjectControls'
+import { SelectedObjectProvider } from '../../hooks/SelectedObjectContext'
 import SceneViewer from './SceneViewer'
-
-const useClasses = makeStyles({
-  container: {
-    maxWidth: '100%',
-    width: '800px',
-  },
-  controls: {
-    marginTop: 16,
-  },
-})
+import SceneSwitcher from './SceneSwitcher'
+import SceneObjectStats from './SceneObjectStats'
+import { sceneEditorQuery } from './__generated__/sceneEditorQuery'
 
 export default function SceneEditor() {
-  const classes = useClasses()
-  const { data, loading, error } = useQuery(gql`
-    query sceneEditorQuery {
-      scene(where: { id: 1 }) {
-        id
-        ...sceneViewer_scene
-        crates {
+  const [currentScene, setCurrentScene] = React.useState(1)
+  const { data, loading, error } = useQuery<sceneEditorQuery>(
+    gql`
+      query sceneEditorQuery($id: Int!) {
+        scene(where: { id: $id }) {
           id
-          ...sceneObjectControls_crate
+          ...sceneViewer_scene
         }
       }
-    }
-    ${SceneViewer.fragments.scene}
-    ${SceneObjectControls.fragments.crate}
-  `)
+      ${SceneViewer.fragments.scene}
+    `,
+    {
+      variables: { id: currentScene },
+    },
+  )
 
   if (loading) return <CircularProgress />
   if (error) return <p>ERROR</p>
-  if (!data) return <p>Not Found</p>
-
-  const { scene } = data
+  if (!data?.scene) return <p>Not Found</p>
 
   return (
-    <Layout column>
-      <Paper>
-        <Layout flex>
-          <SceneViewer scene={scene} />
-        </Layout>
-      </Paper>
-      <SceneObjectControls classes={{ root: classes.controls }} crate={scene.crates[0]} />
-    </Layout>
+    <SelectedObjectProvider>
+      <Layout column>
+        <Paper>
+          <Layout flex>
+            <SceneViewer scene={data.scene} />
+          </Layout>
+        </Paper>
+        {/* <SceneObjectControls classes={{ root: classes.controls }} id="0" /> */}
+        <SceneObjectStats />
+        <SceneSwitcher currentScene={currentScene} onSceneSwitch={id => setCurrentScene(id)} />
+      </Layout>
+    </SelectedObjectProvider>
   )
 }

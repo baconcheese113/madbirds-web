@@ -4,7 +4,7 @@ import { ApolloClient, ApolloProvider, NormalizedCacheObject } from '@apollo/cli
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { cache } from './cache'
 import App from './App'
-import { darkTheme } from './theme'
+import { darkTheme } from './helpers/theme'
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,

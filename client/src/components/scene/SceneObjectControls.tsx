@@ -5,21 +5,19 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { Layout } from '../common'
-import { updateOneCrate } from './mutations/updateOneCrate.mutation'
-import { sceneObjectControls_crate } from './__generated__/sceneObjectControls_crate'
+import { updateOneCrateMutation } from './mutations/updateOneCrate.mutation'
 
 const MOVE_SIZE = 10
 
 type Props = {
-  crate: sceneObjectControls_crate,
+  id: string,
   classes: { root: string },
 }
 export default function SceneObjectControls(props: Props) {
-  const { crate, classes } = props
-  const { id, x, y } = crate
-  const [updateCrate] = useMutation(updateOneCrate)
+  const { id, classes } = props
+  const [updateCrate] = useMutation(updateOneCrateMutation)
 
   const handleMove = React.useCallback(
     async (movement: { x?: number, y?: number }) => {
@@ -36,7 +34,6 @@ export default function SceneObjectControls(props: Props) {
     [id, updateCrate],
   )
 
-  console.log('x: ', x, ' y: ', y)
   return (
     <Paper classes={{ root: classes.root }}>
       <Layout>
@@ -63,16 +60,4 @@ export default function SceneObjectControls(props: Props) {
       </Layout>
     </Paper>
   )
-}
-
-SceneObjectControls.fragments = {
-  crate: gql`
-    fragment sceneObjectControls_crate on Crate {
-      __typename
-      id
-      x
-      y
-      rotation
-    }
-  `,
 }
