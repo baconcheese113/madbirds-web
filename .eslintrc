@@ -1,0 +1,55 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "prettier",
+    "prettier/react",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript"
+  ],
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import"
+  ],
+  "ignorePatterns": [
+    "build/",
+    "generated/"
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ],
+    "import/imports-first": [
+      "error",
+      "absolute-first"
+    ],
+    "import/newline-after-import": "error",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "reservedFirst": true
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "prettier/prettier": "error",
+    "react/no-array-index-key": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
+  },
+  "parser": "@typescript-eslint/parser"
+}

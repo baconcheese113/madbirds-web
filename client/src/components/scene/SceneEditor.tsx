@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client'
 import { CircularProgress, makeStyles, Paper } from '@material-ui/core'
 import { Layout } from '../common'
-import SceneObjectControls from './SceneObjectControls';
-import SceneObject from './SceneObject';
-import SceneViewer from './SceneViewer';
+import SceneObjectControls from './SceneObjectControls'
+import SceneViewer from './SceneViewer'
 
 const useClasses = makeStyles({
   container: {
@@ -12,15 +11,15 @@ const useClasses = makeStyles({
     width: '800px',
   },
   controls: {
-    marginTop: 16
-  }
+    marginTop: 16,
+  },
 })
 
 export default function SceneEditor() {
-  const classes = useClasses();
+  const classes = useClasses()
   const { data, loading, error } = useQuery(gql`
     query sceneEditorQuery {
-      scene( where: { id: 1 }) {
+      scene(where: { id: 1 }) {
         id
         ...sceneViewer_scene
         crates {
@@ -32,7 +31,7 @@ export default function SceneEditor() {
     ${SceneViewer.fragments.scene}
     ${SceneObjectControls.fragments.crate}
   `)
-  
+
   if (loading) return <CircularProgress />
   if (error) return <p>ERROR</p>
   if (!data) return <p>Not Found</p>
@@ -46,7 +45,7 @@ export default function SceneEditor() {
           <SceneViewer scene={scene} />
         </Layout>
       </Paper>
-      <SceneObjectControls crate={scene.crates[0]} classes={{ root: classes.controls }} />
+      <SceneObjectControls classes={{ root: classes.controls }} crate={scene.crates[0]} />
     </Layout>
   )
 }

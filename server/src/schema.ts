@@ -1,8 +1,8 @@
-import { nexusPrisma } from 'nexus-plugin-prisma'
-import { makeSchema, mutationType, objectType, queryType, stringArg } from '@nexus/schema'
 import { join } from 'path'
+import { nexusPrisma } from 'nexus-plugin-prisma'
+import { intArg, makeSchema, mutationType, objectType, queryType, stringArg } from '@nexus/schema'
 import { Context } from './context'
-
+import { jsonBlobType } from './jsonBlobType'
 
 const schema = makeSchema({
   types: [
@@ -11,29 +11,60 @@ const schema = makeSchema({
         t.crud.scene()
         t.crud.scenes({ pagination: true })
         t.crud.crate()
-      }
+        t.field('downloadJsonScene', {
+          type: 'String',
+          args: {
+            levelNumber: intArg({
+              description: 'The levelNumber for the scene to download',
+              required: true,
+            }),
+          },
+          async resolve(_root, args, { prisma }: Context) {
+            const { levelNumber } = args
+            const allData = await prisma.scene.findOne({
+              where: { levelNumber },
+              include: { crates: true, explosiveCrates: true, enemies: true, platforms: true },
+            })
+            console.dir(allData)
+            return JSON.stringify(allData)
+          },
+        })
+      },
     }),
     mutationType({
       definition(t) {
         t.crud.updateOneCrate()
         t.field('uploadJsonScene', {
-          type: "Boolean",
+          type: 'Boolean',
           args: {
             json: stringArg({
-              description: "JSON string with the entire scene to upload",
-              required: true
-            })
+              description: 'JSON string with the entire scene to upload, probably from game client',
+              required: true,
+            }),
           },
-          async resolve(root, args, { prisma }: Context) {
-            const json = JSON.parse(args.json);
-            for (const [idx, crate] of Object.entries(json.crates)) {
-              const newCrate = { x: crate.position.x * 50, y: crate.position.y * 50, rotation: crate.rotation, Scene: { connect: { id: 1 } } }
-              const upsert = await prisma.crate.upsert({ create: newCrate, update: newCrate, where: { id: Number.parseInt(idx) + 1 } })
+          async resolve(_root, args, { prisma }: Context) {
+            const json: jsonBlobType = JSON.parse(args.json)
+            const { levelNumber } = json
+            // The upload mutation totally replaces everything for this scene so all current scene objects need to be removed
+            const scene = await prisma.scene.findOne({ where: { levelNumber } })
+            if (scene) {
+              const whereLevel = { where: { sceneId: scene.id } }
+              await prisma.enemy.deleteMany(whereLevel)
+              await prisma.crate.deleteMany(whereLevel)
+              await prisma.explosiveCrate.deleteMany(whereLevel)
+              await prisma.platform.deleteMany(whereLevel)
             }
+            const enemies = { create: json.enemies }
+            const crates = { create: json.crates }
+            const explosiveCrates = { create: json.explosiveCrates }
+            const platforms = { create: json.platforms }
+            const data = { enemies, crates, explosiveCrates, platforms }
+            await prisma.scene.upsert({ create: data, update: data, where: { levelNumber } })
+
             return true
-          }
+          },
         })
-      }
+      },
     }),
     objectType({
       name: 'Scene',
@@ -44,7 +75,7 @@ const schema = makeSchema({
         t.model.explosiveCrates()
         t.model.enemies()
         t.model.platforms()
-      }
+      },
     }),
     objectType({
       name: 'Crate',
@@ -54,7 +85,7 @@ const schema = makeSchema({
         t.model.y()
         t.model.rotation()
         t.model.Scene()
-      }
+      },
     }),
     objectType({
       name: 'ExplosiveCrate',
@@ -69,7 +100,7 @@ const schema = makeSchema({
         t.model.chainReactionRadius()
         t.model.onlyPlayerCanTrigger()
         t.model.Scene()
-      }
+      },
     }),
     objectType({
       name: 'Enemy',
@@ -78,7 +109,7 @@ const schema = makeSchema({
         t.model.y()
         t.model.rotation()
         t.model.Scene()
-      }
+      },
     }),
     objectType({
       name: 'Platform',
@@ -92,16 +123,18 @@ const schema = makeSchema({
         t.model.bounceMultiplier()
         t.model.onlyBounceFront()
         t.model.Scene()
-      }
-    })
+      },
+    }),
   ],
   outputs: {
     typegen: join(__dirname, '..', 'generated', 'nexus-typegen.ts'),
     schema: join(__dirname, '..', 'generated', 'schema.graphql'),
   },
-  plugins: [nexusPrisma({
-    experimentalCRUD: true,
-  })],
+  plugins: [
+    nexusPrisma({
+      experimentalCRUD: true,
+    }),
+  ],
 })
 
 export { schema }

@@ -23,11 +23,6 @@
     "win-rm-gen": "FOR /d /r . %d IN (__generated__) DO @IF EXIST \"%d\" rd /s /q \"%d\"",
     "codegen": "npm run win-rm-gen && apollo client:codegen --target=typescript --variant=current --passthroughCustomScalars --customScalarsPrefix GraphQL --globalTypesFile=src/types/__generated__/graphql-global-types.ts __generated__"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
